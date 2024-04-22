@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Member\Data\" />
+    <Folder Include="Views\Shared\Components\_LastDestinations\" />
     <Folder Include="wwwroot\userimages\" />
   </ItemGroup>
 
