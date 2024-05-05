@@ -7,22 +7,31 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using TraversalCoreProject.Models;
+using Microsoft.Extensions.DependencyInjection;
+using BusinessLayer.Container;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddLogging(x =>
+{
+    x.ClearProviders();
+    x.SetMinimumLevel(LogLevel.Debug);
+    x.AddDebug();
+});
+
+builder.Services.AddLogging(log =>
+{
+    log.ClearProviders();
+    log.AddFile($"{Directory.GetCurrentDirectory()}\\Logs\\log1.txt", LogLevel.Error);
+});
+
 builder.Services.AddDbContext<Context>();
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>
     ().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
 
-builder.Services.AddScoped<ICommentService, CommentManager>();
-builder.Services.AddScoped<ICommentDal, EfCommentDal>();
-
-builder.Services.AddScoped<IDestinationService, DestinationManager>();
-builder.Services.AddScoped<IDestinationDal, EfDestinationDal>();
-
-builder.Services.AddScoped<IAppUserService, AppUserManager>();
-builder.Services.AddScoped<IAppUserDal, EfAppUserDal>();
+builder.Services.ContainerDependencies();
 
 builder.Services.AddControllersWithViews();
 
@@ -44,6 +53,8 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404", "?code={0}");
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
