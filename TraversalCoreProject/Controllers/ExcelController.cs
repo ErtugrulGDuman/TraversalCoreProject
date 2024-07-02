@@ -2,15 +2,9 @@
 using ClosedXML.Excel;
 using DataAccessLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
-using OfficeOpenXml;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using TraversalCoreProject.Models;
 
-namespace TraversalCoreProje.Controllers
+namespace TraversalCoreProject.Controllers
 {
     public class ExcelController : Controller
     {
