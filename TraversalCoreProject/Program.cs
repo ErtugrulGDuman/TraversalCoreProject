@@ -9,6 +9,10 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using TraversalCoreProject.Models;
 using Microsoft.Extensions.DependencyInjection;
 using BusinessLayer.Container;
+using DTOLayer.DTOs.AnnouncementDTOs;
+using BusinessLayer.ValidationRules;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +36,14 @@ builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Contex
     ().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
 
 builder.Services.ContainerDependencies();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+//builder.Services.AddAutoMapper(typeof(TraversalCoreProject.Mapping.AutoMapperProfile).Assembly);
+//builder.Services.AddAutoMapper(typeof(Startup));
+
+builder.Services.AddTransient<IValidator<AnnouncementAddDto>, AnnouncementValidator>();
+
+builder.Services.AddControllersWithViews().AddFluentValidation();
 
 builder.Services.AddControllersWithViews();
 
