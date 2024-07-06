@@ -41,7 +41,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 //builder.Services.AddAutoMapper(typeof(TraversalCoreProject.Mapping.AutoMapperProfile).Assembly);
 //builder.Services.AddAutoMapper(typeof(Startup));
 
-builder.Services.AddTransient<IValidator<AnnouncementAddDto>, AnnouncementValidator>();
+builder.Services.CustomerValidator();
 
 builder.Services.AddControllersWithViews().AddFluentValidation();
 
