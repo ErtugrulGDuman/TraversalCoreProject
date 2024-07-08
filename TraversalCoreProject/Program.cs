@@ -15,6 +15,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using TraversalCoreProject.CQRS.Handlers.DestinationHandlers;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,7 @@ builder.Services.AddScoped<CreateDestinationCommandHandler>();
 builder.Services.AddScoped<RemoveDestinationCommandHandler>();
 builder.Services.AddScoped<UpdateDestinationCommandHandler>();
 
+builder.Services.AddMediatR(typeof(Program));
 
 builder.Services.AddLogging(x =>
 {
