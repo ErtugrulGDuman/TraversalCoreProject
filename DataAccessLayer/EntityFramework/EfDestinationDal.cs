@@ -21,6 +21,14 @@ namespace DataAccessLayer.EntityFramework
             }
         }
 
+        public List<Destination> GetDestinationWithGuides(int id)
+        {
+            using (var c = new Context())
+            {
+                return c.Destinations.Include(x => x.Guide).ToList();
+            }
+        }
+
         public List<Destination> GetLast4Destinations()
         {
             using (var context = new Context())
