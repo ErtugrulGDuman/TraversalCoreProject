@@ -10,9 +10,19 @@ namespace SignalRApiForSql.Hubs
         {
             _visitorService = visitorService;
         }
+
         public async Task GetVisitorList()
         {
-            await Clients.All.SendAsync("ReceiveVisitorList", _visitorService.GetVisitorChartList());
+            try
+            {
+                var visitorList = _visitorService.GetVisitorChartList();
+                await Clients.All.SendAsync("ReceiveVisitorList", visitorList);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetVisitorList: {ex.Message}");
+                throw; // Hatanın istemciye iletilmesi için
+            }
         }
     }
 }
