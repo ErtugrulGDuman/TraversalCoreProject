@@ -42,7 +42,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Member\Data\" />
-    <Folder Include="Views\Shared\Components\_LastDestinations\" />
     <Folder Include="wwwroot\pdfreports\" />
     <Folder Include="wwwroot\userimages\" />
   </ItemGroup>
