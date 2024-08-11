@@ -16,6 +16,7 @@ using FluentValidation.AspNetCore;
 using TraversalCoreProject.CQRS.Handlers.DestinationHandlers;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using MediatR;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,10 @@ builder.Services.AddScoped<GetDestinationByIDQueryHandler>();
 builder.Services.AddScoped<CreateDestinationCommandHandler>();
 builder.Services.AddScoped<RemoveDestinationCommandHandler>();
 builder.Services.AddScoped<UpdateDestinationCommandHandler>();
+
+builder.Services.AddControllersWithViews()
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization();
 
 builder.Services.AddMediatR(typeof(Program));
 

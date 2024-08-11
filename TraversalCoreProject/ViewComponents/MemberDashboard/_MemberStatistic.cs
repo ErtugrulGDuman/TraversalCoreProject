@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace TraversalCoreProje.ViewComponents.MemberLayout
+namespace TraversalCoreProje.ViewComponents.MemberDashboard
 {
-    public class _MemberLayoutSearch : ViewComponent
+    public class _MemberStatistic : ViewComponent
     {
         public IViewComponentResult Invoke()
         {
