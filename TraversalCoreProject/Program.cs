@@ -17,6 +17,7 @@ using TraversalCoreProject.CQRS.Handlers.DestinationHandlers;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,7 +57,8 @@ builder.Services.AddLogging(log =>
 
 builder.Services.AddDbContext<Context>();
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>
-    ().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
+    ().AddErrorDescriber<CustomIdentityValidator>().AddTokenProvider<DataProtectorTokenProvider<AppUser>>(TokenOptions.DefaultProvider)
+    .AddEntityFrameworkStores<Context>();
 
 builder.Services.AddHttpClient();
 
