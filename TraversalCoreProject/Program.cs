@@ -106,7 +106,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 var supportedCultures = new[] { "en", "fr", "es", "gr", "tr", "de" };
-var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[4]).AddSupportedCultures(supportedCultures).AddSupportedUICultures(supportedCultures);
+var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[1]).AddSupportedCultures(supportedCultures).AddSupportedUICultures(supportedCultures);
 app.UseRequestLocalization(localizationOptions);
 
 app.MapControllerRoute(
